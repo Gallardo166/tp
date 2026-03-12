@@ -44,18 +44,15 @@ public class Supplier extends Person {
     public boolean isOpen() {
         if (openingHours == null || openingHours.isEmpty()) {
             return false;
+        } else {
+            return true;
         }
 
-        String[] parts = openingHours.split("-");
-        if (parts.length != 2) {
-            return false;
-        }
+        //LocalTime now = LocalTime.now();
+        //LocalTime openTime = LocalTime.parse(parts[0].trim());
+        //LocalTime closeTime = LocalTime.parse(parts[1].trim());
 
-        LocalTime now = LocalTime.now();
-        LocalTime openTime = LocalTime.parse(parts[0].trim());
-        LocalTime closeTime = LocalTime.parse(parts[1].trim());
-
-        return !now.isBefore(openTime) && now.isBefore(closeTime);
+        //return !now.isBefore(openTime) && now.isBefore(closeTime);
     }
 
 }
