@@ -6,9 +6,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_OPEN;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all open suppliers in the address book to the user.
  */
-public class ListCommand extends Command {
+public class OpenCommand extends Command {
 
     public static final String COMMAND_WORD = "open";
 
