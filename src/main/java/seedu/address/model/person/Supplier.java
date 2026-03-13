@@ -29,7 +29,7 @@ public class Supplier extends Person {
         super(name, phone, email, address, tags);
         requireAllNonNull(openingHours);
         this.openingHoursString = openingHours;
-        
+
         LocalTime[] openingTimes = parseTime(openingHours);
         this.openTime = openingTimes[0];
         this.closeTime = openingTimes[1];
@@ -41,7 +41,7 @@ public class Supplier extends Person {
         String[] splitOpeningHours = openingHours.split(" - ");
         LocalTime openTime = LocalTime.parse(splitOpeningHours[0], INPUT_TIME_FORMAT);
         LocalTime closeTime = LocalTime.parse(splitOpeningHours[1], INPUT_TIME_FORMAT);
-        return new LocalTime[]{ openTime, closeTime }; 
+        return new LocalTime[]{openTime, closeTime};
     }
 
     public String getOpeningHours() {
@@ -63,7 +63,7 @@ public class Supplier extends Person {
     @Override
     public boolean isOpen() {
         LocalTime now = LocalTime.now();
-        
+
         boolean isAfterOpenTime = now.isAfter(this.openTime);
         boolean isBeforeCloseTime = now.isBefore(this.closeTime);
 

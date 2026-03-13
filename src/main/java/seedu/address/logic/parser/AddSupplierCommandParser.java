@@ -37,7 +37,8 @@ public class AddSupplierCommandParser implements Parser<AddSupplierCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE,
                 PREFIX_EMAIL, PREFIX_TAG, PREFIX_OPENING_HOURS) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSupplierCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddSupplierCommand.MESSAGE_USAGE));
         }
 
         // Require at least one tag for suppliers
@@ -59,8 +60,9 @@ public class AddSupplierCommandParser implements Parser<AddSupplierCommand> {
             Supplier supplier = new Supplier(name, phone, email, address, tagSet, openingHours, phone);
             return new AddSupplierCommand(supplier);
         } catch (DateTimeException dte) {
-            throw new ParseException(AddSupplierCommand.MESSAGE_INCORRECT_TIME_FORMAT + "\n" +
-                    AddSupplierCommand.MESSAGE_USAGE);
+            throw new ParseException(AddSupplierCommand.MESSAGE_INCORRECT_TIME_FORMAT
+                    + "\n"
+                    + AddSupplierCommand.MESSAGE_USAGE);
         }
     }
 
