@@ -5,7 +5,9 @@ title: "Jia Cheng's Project Portfolio Page"
 
 ### Project: MALAdress 1.1
 
-MALAddress helps hawker stall owners quickly store, update, and retrieve supplier and regular-customer contacts in one place, optimized for fast CLI workflows during busy service hours. Reduce missed calls, supplier mix-ups, and time wasted digging through chat apps or paper notes.
+MALAddress helps hawker stall owners quickly store, update, and retrieve supplier and regular-customer contacts in one
+place, optimized for fast CLI workflows during busy service hours. Reduce missed calls, supplier mix-ups, and time
+wasted digging through chat apps or paper notes.
 Given below are my contributions to the project.
 
 * **New Feature**: Coming soon!

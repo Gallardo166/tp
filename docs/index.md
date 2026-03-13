@@ -10,12 +10,16 @@
 
 ![Ui](images/Ui.png)
 
-**MALAddress is a desktop application for managing your Hawker Stall.**. it can store, update, and retrieve supplier and regular-customer contacts, optimized for fast CLI workflows during busy service hours. Reduce missed calls, supplier mix-ups, and time wasted digging through chat apps, emails, or paper notes!
+**MALAddress is a desktop application for managing your Hawker Stall.**. it can store, update, and retrieve supplier and
+regular-customer contacts, optimized for fast CLI workflows during busy service hours. Reduce missed calls, supplier
+mix-ups, and time wasted digging through chat apps, emails, or paper notes!
 
-* If you are interested in using MALAdress, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing MALAdress, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
-
+* If you are interested in using MALAdress, head over to the [_Quick Start_ section of the **User Guide
+  **](UserGuide.html#quick-start).
+* If you are interested about developing MALAdress, the [**Developer Guide**](DeveloperGuide.html) is a good place to
+  start.
 
 **Acknowledgements**
 
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* Libraries
+  used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
