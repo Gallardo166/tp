@@ -71,9 +71,27 @@ Format: `help`
 
 ### Adding a contact: `add`
 
-Adds a contact (supplier or customer) to MALAddress.
+Adds a contact (customer) to MALAddress.
 
 Format: `add n/NAME p/PHONE \[e/EMAIL] \[a/ADDRESS] \[t/TAG]…`
+
+Notes:
+
+* `t/` can be used multiple times.
+* Use `t/customer` to classify customers.
+* Using `t/supplier` will make a supplier, but it is recommended to use the `adds` command instead.
+
+Examples:
+
+* `add n/Wei Ming p/81234567 t/customer t/regular t/no chilli`
+
+\---
+
+### Adding a supplier: `adds`
+
+Adds a supplier to MALAddress.
+
+Format: `adds n/NAME p/PHONE \\\[e/EMAIL] \\\[a/ADDRESS] \\\[o/OPENING\_HOURS] \\\[t/TAG]…`
 
 Notes:
 
@@ -83,8 +101,17 @@ Notes:
 
 Examples:
 
-* `add n/Ah Seng Veggies p/91234567 t/supplier t/vegetables t/leadtime:2d hours:0700-1700`
-* `add n/Wei Ming p/81234567 t/customer t/regular t/no chilli`
+* `adds n/Ah Seng Veggies p/91234567 a/Yishun e/ahseng@email.com o/0900 - 1800 t/vegetables`
+
+\---
+
+### Clear contacts : `clear`
+
+Deletes all stored contacts. This action is not reversible.
+
+Format: `clear`
+
+
 
 \---
 
@@ -127,7 +154,7 @@ Format: `find KEYWORD \[MORE\_KEYWORDS]`
 Search behaviour:
 
 * The search is case-insensitive.
-* Keywords can match any of: **name, phone, email, address, tags, remark**.
+* Keywords can match any of: **name, phone, email, address, tags.**
 * Contacts matching at least one keyword will be returned (`OR` search).
 
 Examples:
@@ -141,7 +168,7 @@ Examples:
 
 ### Tagging a contact as customer/supplier: `tag`
 
-Updates tags and/or remark for a contact.
+Updates tags for a contact.
 
 Format: `tag INDEX \[t/TAG]…`
 
@@ -234,11 +261,13 @@ minimized. Remedy: restore it manually.
 
 |Action|Format, Examples|
 |-|-|
-|**Add**|`add n/NAME p/PHONE \[e/EMAIL] \[a/ADDRESS] \[t/TAG]…` <br> e.g., `add n/Ah Seng Veggies p/91234567 t/supplier t/vegetables t/leadtime:2d hours:0700-1700`|
+|**Add**|`add n/NAME p/PHONE \[e/EMAIL] \[a/ADDRESS] \[t/TAG]…` <br> e.g., `add n/Wei Ming p/81234567 t/customer t/regular t/no chilli`|
+|**Adds**|`add n/NAME p/PHONE \[e/EMAIL] \[a/ADDRESS] \[o/OPENING\_HOURS] \[t/TAG]…`<br> e.g., `adds n/Ah Seng Veggies p/91234567 a/Yishun e/ahseng@email.com o/0900 - 1800 t/vegetables`|
+|**Clear**|`clear`|
 |**List**|`list`|
 |**Find**|`find KEYWORD \[MORE\_KEYWORDS]`<br> e.g., `find vegetables`|
 |**Edit**|`edit INDEX \[n/NAME] \[p/PHONE] \[e/EMAIL] \[a/ADDRESS] \[t/TAG]…`<br> e.g., `edit 2 t/customer t/regular t/no chilli`|
-|**Tag**|`tag INDEX \[t/TAG]…`<br> e.g., `tag 1 t/supplier t/hours:0700-1700`|
+|**Tag**|`tag INDEX \[t/TAG]…`<br> e.g., `tag 1 t/supplier`|
 |**Open**|`open`|
 |**Delete**|`delete INDEX`<br> e.g., `delete 3`|
 |**Help**|`help` / `help COMMAND`<br> e.g., `help add`|
