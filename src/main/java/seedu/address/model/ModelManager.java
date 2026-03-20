@@ -175,7 +175,6 @@ public class ModelManager implements Model {
     public void deletePerson(Person target) {
         requireNonNull(target);
         addressBook.removePerson(target);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     /**
@@ -200,7 +199,6 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     //=========== Undo / Redo ================================================================================
