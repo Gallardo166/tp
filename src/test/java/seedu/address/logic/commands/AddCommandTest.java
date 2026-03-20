@@ -194,12 +194,6 @@ public class AddCommandTest {
         }
     }
 
-    /**
-     * A Model stub that always accepts the person being added.
-     */
-    /**
-     * A Model stub that always accepts the person being added.
-     */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         private final ArrayList<Person> personsAdded = new ArrayList<>();
         private boolean saveStateForUndoCalled = false;
