@@ -41,8 +41,8 @@ public class AddCommandTest {
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validPerson)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
-        assertTrue(modelStub.saveStateForUndoCalled);
+        assertEquals(Arrays.asList(validPerson), modelStub.getPersonsAdded());
+        assertTrue(modelStub.isSaveStateForUndoCalled());
     }
 
     @Test
@@ -197,9 +197,12 @@ public class AddCommandTest {
     /**
      * A Model stub that always accepts the person being added.
      */
+    /**
+     * A Model stub that always accepts the person being added.
+     */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
-        boolean saveStateForUndoCalled = false;
+        private final ArrayList<Person> personsAdded = new ArrayList<>();
+        private boolean saveStateForUndoCalled = false;
 
         @Override
         public boolean hasPerson(Person person) {
@@ -210,6 +213,14 @@ public class AddCommandTest {
         @Override
         public void saveStateForUndo() {
             saveStateForUndoCalled = true;
+        }
+
+        public boolean isSaveStateForUndoCalled() {
+            return saveStateForUndoCalled;
+        }
+
+        public ArrayList<Person> getPersonsAdded() {
+            return personsAdded;
         }
 
         @Override
