@@ -5,7 +5,6 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARKS;
 
 import java.util.Collection;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RemarksCommand;
@@ -20,24 +19,20 @@ public class RemarksCommandParser implements Parser<RemarksCommand> {
     public RemarksCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        String trimmedArgs = args.trim();
-        String[] parts = trimmedArgs.split("\\s+", 2);
-
-        if (parts.length == 0 || parts[0].isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarksCommand.MESSAGE_USAGE));
-        }
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_REMARKS);
 
         Index index;
         try {
-            index = ParserUtil.parseIndex(parts[0]);
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarksCommand.MESSAGE_USAGE), pe);
         }
 
-        String remarks = "";
-        if (parts.length > 1) {
-            remarks = parts[1];
-        }
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_REMARKS);
+        Collection<String> remarksCollection = argMultimap.getAllValues(PREFIX_REMARKS);
+	String remarks = remarksCollection.isEmpty() 
+	? ""
+	: remarksCollection.iterator().next();
 
         return new RemarksCommand(index, remarks);
     }

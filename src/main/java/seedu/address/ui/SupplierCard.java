@@ -43,6 +43,8 @@ public class SupplierCard extends UiPart<Region> {
     @FXML
     private Label openingHours;
     @FXML
+    private Label remarks;
+    @FXML
     private VBox typeBadge;
     @FXML
     private Label type;
@@ -62,6 +64,7 @@ public class SupplierCard extends UiPart<Region> {
         address.setText(supplier.getAddress().value);
         email.setText(supplier.getEmail().value);
         openingHours.setText("Opening Hours: " + supplier.getOpeningHours() + "  |  " + supplier.timeLeft());
+        remarks.setText("Remarks: " + supplier.getRemarks());
         typeBadge.setVisible(true);
         typeBadge.setManaged(true);
         type.setText(supplier.getPersonType());

@@ -11,6 +11,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Supplier;
 
 /**
  * Replaces the remarks to an existing person in the address book.
@@ -61,15 +62,29 @@ public class RemarksCommand extends Command {
 
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+	Person remarkedPerson;
 
-        Person remarkedPerson = new Person(
-                personToEdit.getName(),
-                personToEdit.getPhone(),
-                personToEdit.getEmail(),
-                personToEdit.getAddress(),
-		remarks,
-                personToEdit.getTags()
-        );
+	if (personToEdit instanceof Supplier supplier) {
+            remarkedPerson = new Supplier(
+                    supplier.getName(),
+                    supplier.getPhone(),
+                    supplier.getEmail(),
+                    supplier.getAddress(),
+		    remarks,
+                    supplier.getTags(),
+                    supplier.getOpeningHours(),
+                    supplier.getAlternativeContact()
+            );
+	} else {
+            remarkedPerson = new Person(
+                    personToEdit.getName(),
+                    personToEdit.getPhone(),
+                    personToEdit.getEmail(),
+                    personToEdit.getAddress(),
+		    remarks,
+                    personToEdit.getTags()
+            );
+	}
 
         // Same duplicate check pattern as EditCommand
         if (!personToEdit.isSamePerson(remarkedPerson) && model.hasPerson(remarkedPerson)) {
