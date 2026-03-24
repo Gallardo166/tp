@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPENING_HOURS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -26,6 +27,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Supplier;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,7 +45,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG] "
+            + "[" + PREFIX_TAG + "OPENING_HOURS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -103,6 +106,11 @@ public class EditCommand extends Command {
 	String updatedRemarks = personToEdit.getRemarks();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
+	if (personToEdit instanceof Supplier supplierToEdit) {
+	    String updatedOpeningHours = editPersonDescriptor.getOpeningHours().orElse(supplierToEdit.getOpeningHours());
+            Phone updatedAlternativeContact = editPersonDescriptor.getPhone().orElse(supplierToEdit.getAlternativeContact());
+	    return new Supplier(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemarks, updatedTags, updatedOpeningHours, updatedAlternativeContact);
+	}
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemarks, updatedTags);
     }
 
@@ -141,6 +149,7 @@ public class EditCommand extends Command {
         private Address address;
 	private String remarks;
         private Set<Tag> tags;
+	private String openingHours;
 
         public EditPersonDescriptor() {}
 
@@ -154,13 +163,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+	    setOpeningHours(toCopy.openingHours);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, remarks, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, remarks, tags, openingHours);
         }
 
         public void setName(Name name) {
@@ -199,6 +209,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(remarks);
         }
 
+        public void setOpeningHours(String openingHours) {
+            this.openingHours = openingHours;
+        }
+
+        public Optional<String> getOpeningHours() {
+            return Optional.ofNullable(openingHours);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -233,7 +251,8 @@ public class EditCommand extends Command {
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
                     && Objects.equals(remarks, otherEditPersonDescriptor.remarks)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+                    && Objects.equals(tags, otherEditPersonDescriptor.tags)
+                    && Objects.equals(openingHours, otherEditPersonDescriptor.openingHours);
         }
 
         @Override
@@ -245,6 +264,7 @@ public class EditCommand extends Command {
                     .add("address", address)
                     .add("remarks", remarks)
                     .add("tags", tags)
+                    .add("openingHours", openingHours)
                     .toString();
         }
     }

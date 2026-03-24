@@ -63,6 +63,7 @@ public class PersonCard extends UiPart<Region> {
         typeBadge.setVisible(false);
         typeBadge.setManaged(false);
         openingHours.setVisible(false);
+        openingHours.setManaged(false);
 
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

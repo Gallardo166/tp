@@ -11,6 +11,7 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Supplier;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -61,15 +62,29 @@ public class TagCommand extends Command {
 
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+	Person taggedPerson;
 
-        Person taggedPerson = new Person(
-                personToEdit.getName(),
-                personToEdit.getPhone(),
-                personToEdit.getEmail(),
-                personToEdit.getAddress(),
-                personToEdit.getRemarks(),
-                tags
-        );
+	if (personToEdit instanceof Supplier supplier) {
+            taggedPerson = new Supplier(
+                    supplier.getName(),
+                    supplier.getPhone(),
+                    supplier.getEmail(),
+                    supplier.getAddress(),
+		    supplier.getRemarks(),
+                    tags,
+                    supplier.getOpeningHours(),
+                    supplier.getAlternativeContact()
+            );
+	} else {
+            taggedPerson = new Person(
+                    personToEdit.getName(),
+                    personToEdit.getPhone(),
+                    personToEdit.getEmail(),
+                    personToEdit.getAddress(),
+		    personToEdit.getRemarks(),
+                    tags
+            );
+	}
 
         // Same duplicate check pattern as EditCommand
         if (!personToEdit.isSamePerson(taggedPerson) && model.hasPerson(taggedPerson)) {
