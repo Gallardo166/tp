@@ -91,6 +91,14 @@ public class Person {
     }
 
     /**
+     * Return a {@code Person} with identical information, but is not favourite.
+     */
+    public Person createNotFavouritePerson() {
+        boolean isFavourite = false;
+        return new Person(this.name, this.phone, this.email, this.address, this.tags, isFavourite);
+    }
+
+    /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */

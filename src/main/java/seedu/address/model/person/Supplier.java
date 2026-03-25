@@ -94,6 +94,16 @@ public class Supplier extends Person {
                 isFavourite, this.getOpeningHours(), this.alternativeContact);
     }
 
+    /**
+     * Returns a {@code Supplier} with identical information, but is not favourite.
+     */
+    @Override
+    public Person createNotFavouritePerson() {
+        boolean isFavourite = false;
+        return new Supplier(this.getName(), this.getPhone(), this.getEmail(), this.getAddress(), this.getTags(),
+                isFavourite, this.getOpeningHours(), this.alternativeContact);
+    }
+
     @Override
     public String getPersonType() {
         return "Supplier";

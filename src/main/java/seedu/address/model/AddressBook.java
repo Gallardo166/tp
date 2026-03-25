@@ -111,13 +111,28 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void setPersonAsFavourite(Person target) {
         requireNonNull(target);
 
-        assert persons.asUnmodifiableObservableList().indexOf(target) >= nextFavouriteIndex.getZeroBased();
+        assert persons.asUnmodifiableObservableList().indexOf(target) >= nextFavouriteIndex.getZeroBased()
+                : "Person must not be in favourites list";
         persons.movePerson(target, nextFavouriteIndex);
         assert persons.contains(target);
 
         nextFavouriteIndex.increment();
 
         persons.setPerson(target, target.createFavouritePerson());
+    }
+
+    public void unsetPersonAsFavourite(Person target) {
+        requireNonNull(target);
+
+        assert persons.asUnmodifiableObservableList().indexOf(target) < nextFavouriteIndex.getZeroBased()
+                : "Person must be in favourites list";
+        assert nextFavouriteIndex.getZeroBased() != 0;
+        nextFavouriteIndex.decrement();
+
+        persons.movePerson(target, nextFavouriteIndex);
+        assert persons.contains(target);
+
+        persons.setPerson(target, target.createNotFavouritePerson());
     }
 
     //// util methods
