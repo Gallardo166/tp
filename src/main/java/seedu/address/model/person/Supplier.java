@@ -123,7 +123,7 @@ public class Supplier extends Person {
             return "closed";
         }
 
-        long hours   = duration.toHours();
+        long hours = duration.toHours();
         long minutes = duration.toMinutes() % 60;
 
         return String.format("%02d:%02d until closing", hours, minutes);
