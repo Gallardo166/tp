@@ -67,7 +67,7 @@ public class SupplierTest {
 
     @Test
     public void timeLeft() {
-        assertNotNull(ALI.timeLeft());
+        assertNotNull(ALI.getTimeLeft());
     }
 
     @Test
