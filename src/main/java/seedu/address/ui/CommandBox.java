@@ -75,11 +75,14 @@ public class CommandBox extends UiPart<Region> {
      * If the current text has fewer than {@code CLEAR_IF_FEWER_THAN_LETTERS} words,
      * the text is replaced; otherwise, the new text is appended.
      */
-    static String getUpdatedCommandText(String existing, String toInsert) {
-        if (countWords(existing) < CLEAR_IF_FEWER_THAN_LETTERS) {
-            return toInsert;
+    static String getUpdatedCommandText(String existing, String command) {
+        String current = existing == null ? "" : existing;
+        int words = countWords(current);
+
+        if (words < CLEAR_IF_FEWER_THAN_LETTERS) {
+            return command;
         }
-        return existing + toInsert;
+        return current + command;
     }
     /**
      * Runs command immediately.
