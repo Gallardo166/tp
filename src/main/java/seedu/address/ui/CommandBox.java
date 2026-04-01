@@ -68,6 +68,11 @@ public class CommandBox extends UiPart<Region> {
         String trimmed = text.trim();
         return trimmed.isEmpty() ? 0 : trimmed.split("\\s+").length;
     }
+    /**
+     * Checks the length of the current input text
+     * @param existing The current text to be inserted.
+     * @param command The current command being used
+     */
     static String computeInsertedText(String existing, String command) {
         String current = existing == null ? "" : existing;
 
