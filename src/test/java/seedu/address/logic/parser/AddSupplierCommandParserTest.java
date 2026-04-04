@@ -48,6 +48,56 @@ public class AddSupplierCommandParserTest {
     }
 
     @Test
+    public void parse_compulsoryPersonFieldMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSupplierCommand.MESSAGE_USAGE);
+
+        // missing name prefix
+        assertParseFailure(parser,
+                VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                        + OPENING_HOURS_DESC + TAG_DESC_VEGETABLE,
+                expectedMessage);
+
+        // missing phone prefix
+        assertParseFailure(parser,
+                NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                        + OPENING_HOURS_DESC + TAG_DESC_VEGETABLE,
+                expectedMessage);
+
+        // missing email prefix
+        assertParseFailure(parser,
+                NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB
+                        + OPENING_HOURS_DESC + TAG_DESC_VEGETABLE,
+                expectedMessage);
+
+        // missing address prefix
+        assertParseFailure(parser,
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB
+                        + OPENING_HOURS_DESC + TAG_DESC_VEGETABLE,
+                expectedMessage);
+
+        // all prefixes missing
+        assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB
+                        + VALID_OPENING_HOURS + VALID_TAG_VEGETABLE,
+                expectedMessage);
+    }
+
+    @Test
+    public void parse_openingHoursMissing_failure() {
+        assertParseFailure(parser,
+                NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB + TAG_DESC_VEGETABLE,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSupplierCommand.MESSAGE_OPENING_HOURS_REQUIRED));
+    }
+
+    @Test
+    public void parse_tagsMissing_failure() {
+        assertParseFailure(parser,
+            NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                    + ADDRESS_DESC_BOB + OPENING_HOURS_DESC,
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSupplierCommand.MESSAGE_TAG_REQUIRED));
+    }
+
+    @Test
     public void parse_invalidFormatOpeningHours_throwsParseException() {
         assertParseFailure(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
