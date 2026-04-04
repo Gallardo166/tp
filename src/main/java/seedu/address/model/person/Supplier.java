@@ -44,8 +44,8 @@ public class Supplier extends Person {
      * Constructs a {@code Supplier} with the given details.
      * Supplier is not favourite by default.
      *
-     * @throws IllegalArgumentException If opening hours does not follow 'HHmm - HHmm' format
-     * @throws DateTimeParseException If opening hours have invalid values not between 0000 and 2359
+     * @throws IllegalArgumentException If {@code openingHours} does not follow 'HHmm - HHmm' format.
+     * @throws DateTimeParseException If {@code openingHours} has invalid values.
      */
     public Supplier(Name name, Phone phone, Email email, Address address, String remarks,
             Set<Tag> tags, String openingHours, Phone alternativeContact)
@@ -65,8 +65,8 @@ public class Supplier extends Person {
      * Constructs a {@code Supplier} with the given details.
      * Specifies whether supplier is favourite or not.
      *
-     * @throws IllegalArgumentException If {@code openingHours} does not follow 'HHmm - HHmm' format
-     * @throws DateTimeParseException If {@code openingHours} have invalid values not between 0000 and 2400
+     * @throws IllegalArgumentException If {@code openingHours} does not follow 'HHmm - HHmm' format.
+     * @throws DateTimeParseException If {@code openingHours} has invalid values.
      */
     public Supplier(Name name, Phone phone, Email email, Address address, String remarks,
             Set<Tag> tags, boolean isFavourite, String openingHours, Phone alternativeContact)
