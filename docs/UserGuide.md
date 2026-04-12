@@ -135,7 +135,7 @@ Duplicate names will cause an error regardless of their case.
 Expected Output:
 The supplier appears in the contact list with opening hours and tags shown.
 
-![Alt text](./images/open_command.png)
+![Alt text](./images/add_supplier_UI.png)
 
 Example:
 `adds n/Ah Seng p/91234567 e/a@b.com a/Yishun o/0900 - 2200 t/vegetable`
