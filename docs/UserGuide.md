@@ -88,14 +88,15 @@ Use `open` to filter to suppliers that are currently available (“open now”).
 ## 4\. Features
 
 ### 4.1 Notes about Command Format
-
-* Words in UPPER\_CASE are parameters you supply.
-Example: `adds n/NAME p/PHONE ...`
-* Items in square brackets are optional.
-* Items with `...` can appear multiple times (including zero times).
-* Parameters can be in any order unless stated otherwise.
-* Extra parameters for commands that do not take parameters (e.g., `help`, `list`, `open`, `clear`) will be ignored.
-* Commands are case-sensitive by default for command words (type them as shown).
+- Words in UPPER_CASE are parameters you supply.
+  Example: `adds n/NAME p/PHONE ...`
+- Items in square brackets are optional.
+- Items with `...` can appear multiple times (including zero times).
+- Parameters can be in any order unless stated otherwise.
+- Extra parameters for commands that do not take parameters (e.g., `help`, `list`, `open`, `clear`) will be ignored.
+- Commands are case-sensitive by default for command words (type them as shown). 
+- For commands that use `INDEX`, the index refers to the contact number shown in the **currently displayed list**, not the full contact list.
+- As a result, commands such as `edit`, `delete`, `tag`, `remarks`, `fav`, and `unfav` operate on the current displayed list window.
 
 <div style="page-break-after: always;"></div>
 
@@ -143,9 +144,11 @@ Format:
 `adds n/NAME p/PHONE e/EMAIL a/ADDRESS o/OPENING\_HOURS t/TAG \[t/TAG]...`
 
 Notes:
-
-* Opening hours must be in the format `HHmm - HHmm` (example: `0900 - 1800`).
-* Suppliers must have at least one tag.
+- Opening hours must be in the format `HHmm - HHmm` (example: `0900 - 1800`).
+- Suppliers must have at least one tag.
+- Remarks are **not** included in `adds`.
+- This is intentional, so that `adds` does not become too lengthy to input.
+- If you want to attach a remark, add the supplier first, then use the `remarks` command.
 
 Warning:
 Duplicate names will cause an error regardless of their case.
@@ -292,6 +295,7 @@ Run `open` to filter suppliers that are open now.
 ### 4.10 Updating Remarks: `remarks`
 
 Use this command to replace the remarks of a contact.
+This command is used after `add` or `adds` if you want to attach remarks to the added contacts.
 
 Format:
 `remarks INDEX r/REMARKS`
@@ -318,6 +322,12 @@ Use these commands to set a contact as a favourite, where a heart shape shows up
 Format:
 `fav INDEX`
 `unfav INDEX`
+
+Note:
+- When a contact is marked as favourite, it is moved to the **top** of the contact list.
+- This may change the displayed index numbers of other contacts.
+- Removing a contact’s favourite status may cause the contact list order to change again.
+- As a result, displayed index numbers may change.
 
 Expected Output:
 The contact is toggled as favourite (favourite indicator updates).
